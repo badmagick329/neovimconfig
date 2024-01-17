@@ -3,6 +3,7 @@ return {
   svelte = {},
   bashls = {},
   emmet_ls = {},
+  ruff_lsp = {},
   tailwindcss = require 'custom.lsp.servers.tailwindcss',
   pyright = require 'custom.lsp.servers.pyright',
   html = require 'custom.lsp.servers.html',

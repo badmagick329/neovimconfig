@@ -1,3 +1,4 @@
+-- https://microsoft.github.io/pyright/#/configuration
 return {
   settings = {
     python = {

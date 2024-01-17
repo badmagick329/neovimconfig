@@ -121,6 +121,7 @@ function M.config()
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       }),
+      ["<C-o>"] = cmp.mapping.close(),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
