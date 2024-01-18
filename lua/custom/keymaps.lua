@@ -169,8 +169,8 @@ nmap('gR', function() trouble.open 'lsp_references' end, 'Trouble: LSP Reference
 -- stylua: ignore end
 
 -- [[ Bufferline ]]
-nmap('<S-l>', '<cmd>BufferLineCycleNext<CR>', 'Cycle to next buffer')
-nmap('<S-h>', '<cmd>BufferLineCyclePrev<CR>', 'Cycle to prev buffer')
+-- nmap('<S-l>', '<cmd>BufferLineCycleNext<CR>', 'Cycle to next buffer')
+-- nmap('<S-h>', '<cmd>BufferLineCyclePrev<CR>', 'Cycle to prev buffer')
 
 -- [[ Todo Comments ]]
 nmap('<leader>fc', '<cmd>TodoTelescope<cr>', 'TodoComments: Telescope')

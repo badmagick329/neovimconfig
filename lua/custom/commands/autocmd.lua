@@ -74,12 +74,12 @@ autocmd('BufHidden', {
 })
 
 -- Center After Saving
-autocmd('BufWritePost', {
-  group = augroup('CenterAfterSave', { clear = true }),
-  callback = function()
-    vim.api.nvim_feedkeys('zz', 'n', false)
-  end,
-})
+-- autocmd('BufWritePost', {
+--   group = augroup('CenterAfterSave', { clear = true }),
+--   callback = function()
+--     vim.api.nvim_feedkeys('zz', 'n', false)
+--   end,
+-- })
 
 -- Highlight on yank
 local highlight_group = augroup('YankHighlight', { clear = true })
