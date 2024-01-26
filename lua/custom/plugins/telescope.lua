@@ -52,6 +52,8 @@ function M.config()
         '.DS_Store',
         'fontawesomefree/*',
         'db/*',
+        'assetmanager/static/*',
+        '.next/*',
       },
     },
   }
