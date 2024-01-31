@@ -53,15 +53,12 @@ function M.config()
       null_ls.builtins.formatting.black.with {
         extra_args = { '--line-length', '79' },
       },
-      -- null_ls.builtins.formatting.black.with {
-      --   extra_args = { "--preview" },
-      -- },
       -- ------- MARKDOWN/JS/HTML -------
       null_ls.builtins.formatting.prettierd,
       -- ------- CLANG -------
       null_ls.builtins.formatting.clang_format,
       -- ------- Javascript -------
-      -- null_ls.builtins.formatting.eslint,
+      null_ls.builtins.formatting.eslint_d,
       -- ------- OCAML -------
       null_ls.builtins.formatting.ocamlformat,
     },

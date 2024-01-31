@@ -1,4 +1,4 @@
-local enabled = false
+local enabled = true
 if not enabled then
   return {}
 end

@@ -11,6 +11,16 @@ local M = {
 
 function M.config()
   local copilot = require 'copilot'
+  local cmp_status_ok, cmp = pcall(require, 'cmp')
+  if cmp_status_ok then
+    cmp.event:on('menu_opened', function()
+      vim.b.copilot_suggestion_hidden = true
+    end)
+
+    cmp.event:on('menu_closed', function()
+      vim.b.copilot_suggestion_hidden = false
+    end)
+  end
   copilot.setup {
     panel = {
       enabled = false,
@@ -18,7 +28,8 @@ function M.config()
       keymap = {
         jump_prev = '[[',
         jump_next = ']]',
-        accept = '<M-;>',
+        -- Keymapping in cmp. otherwise have issues with autpair
+        -- accept = '<M-;>',
         -- refresh = "gr",
         open = '<M-i>',
       },
@@ -32,7 +43,7 @@ function M.config()
       auto_trigger = true,
       debounce = 75,
       keymap = {
-        accept = '<M-;>',
+        accept = false,
         accept_word = false,
         accept_line = false,
         next = '<M-]>',
@@ -51,6 +62,18 @@ function M.config()
       svn = false,
       cvs = false,
       text = false,
+      sh = function()
+        if
+            string.match(
+              vim.fs.basename(vim.api.nvim_buf_get_name(0)),
+              '^%.env.*'
+            )
+        then
+          -- disable for .env files
+          return false
+        end
+        return true
+      end,
       ['.'] = false,
     },
     copilot_node_command = 'node', -- Node.js version must be > 16.x

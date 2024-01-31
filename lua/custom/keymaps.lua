@@ -12,10 +12,31 @@ local nrsmap = function(keys, func, desc)
   keymap('n', keys, func, { desc = desc, remap = true, silent = true })
 end
 
+local format_buffer = function()
+  vim.lsp.buf.format {
+    timeout = 2000,
+    filter = function(client)
+      return client.name ~= 'typescript-tools'
+          and client.name ~= 'ruff_lsp'
+          and client.name ~= 'ruff'
+    end,
+  }
+end
+
 -- [[ Basic Keymaps ]]
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
--- Save
-keymap({ 'n', 'v', 'i', 'x' }, '<C-s>', '<cmd>w<cr>', { silent = true })
+-- Format on Save
+keymap({ 'n', 'v', 'i', 'x' }, '<C-s>', function()
+  format_buffer()
+  vim.cmd 'w'
+  -- vim.cmd 'normal! zz'
+end, { silent = true })
+
+-- Format on save keymap
+keymap('n', '<leader>lf', function()
+  format_buffer()
+end, { desc = 'Format Buffer' })
+
 -- Select full function
 -- {{{
 -- keymap('n', 'vaf', 'vafo0oj', { silent = true, remap = true })
@@ -89,16 +110,6 @@ nmap('<leader>pP', '<cmd> Copilot enable <CR>', 'Enable copilot')
 
 -- [[ LazyGit ]]
 keymap('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
-
--- [[ formatter.nvim ]]
-keymap('n', '<leader>lf', function()
-  vim.lsp.buf.format {
-    async = false,
-    filter = function(client)
-      return client.name ~= 'typescript-tools'
-    end,
-  }
-end, { desc = 'Format Buffer' })
 
 -- [[ vim-tmux-navigator ]]
 nrsmap('<C-h>', ':<C-U>TmuxNavigateLeft<CR>', 'Go to left window')

@@ -58,6 +58,16 @@ function M.config()
   luasnip.config.setup {}
 
   local icons = require 'custom.icons'
+  local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0
+        and vim.api
+        .nvim_buf_get_lines(0, line - 1, line, true)[1]
+        :sub(col, col)
+        :match '%s'
+        == nil
+  end
 
   cmp.setup {
     snippet = {
@@ -116,12 +126,27 @@ function M.config()
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      -- ['<C-Space>'] = cmp.mapping.complete {},
-      ['<C-e>'] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      },
+      -- ['<M-;>'] = cmp.mapping(function(fallback)
+      --   if require('copilot.suggestion').is_visible() then
+      --     require('copilot.suggestion').accept()
+      --   else
+      --     fallback()
+      --   end
+      -- end, { 'i', 's' }),
       ['<C-o>'] = cmp.mapping.close(),
+      ['<C-e>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true }
+        elseif require('copilot.suggestion').is_visible() then
+          require('copilot.suggestion').accept()
+        elseif luasnip.expand_or_locally_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()

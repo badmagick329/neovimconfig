@@ -16,8 +16,8 @@ themes.catpuccin = {
         --     crust = "#474747",
         -- },
       },
-      flavour = 'mocha', -- latte, frappe, macchiato, mocha
-      background = {     -- :h background
+      flavour = 'macchiato', -- latte, frappe, macchiato, mocha
+      background = {         -- :h background
         light = 'latte',
         dark = 'mocha',
       },
@@ -81,11 +81,28 @@ themes.sonokai = {
     vim.cmd [[set termguicolors]]
   end,
 }
+
+themes.tokyonight = {
+  'folke/tokyonight.nvim',
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  config = function()
+    -- vim.g.tokyonight_style = "night"
+    -- vim.g.tokyonight_italic_functions = true
+    -- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+    -- vim.g.tokyonight_dark_sidebar = true
+    -- vim.g.tokyonight_dark_float = true
+    -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+    vim.cmd [[colorscheme tokyonight-day]]
+  end,
+}
 -- }}}
 
 -- Available themes:
 --   * catpuccin
 --   * sonokai
+--   * tokyonight
 local M = themes.catpuccin
 
 return M
