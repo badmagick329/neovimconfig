@@ -50,9 +50,10 @@ function M.config()
       -- null_ls.builtins.diagnostics.ruff,
       null_ls.builtins.formatting.djlint,
       null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.black.with {
-        extra_args = { '--line-length', '79' },
-      },
+      null_ls.builtins.formatting.black,
+      -- null_ls.builtins.formatting.black.with {
+      --   extra_args = { '--line-length', '79' },
+      -- },
       -- ------- MARKDOWN/JS/HTML -------
       null_ls.builtins.formatting.prettierd,
       -- ------- CLANG -------

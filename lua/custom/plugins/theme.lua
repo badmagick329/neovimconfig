@@ -1,6 +1,8 @@
 -- vim:ai:foldmethod=marker:foldlevel=0:
 local themes = {}
 
+local transparency = true
+
 -- {{{
 themes.catpuccin = {
   'catppuccin/nvim',
@@ -21,19 +23,19 @@ themes.catpuccin = {
         light = 'latte',
         dark = 'mocha',
       },
-      transparent_background = true, -- disables setting the background color.
-      show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
-      term_colors = true,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+      transparent_background = transparency, -- disables setting the background color.
+      show_end_of_buffer = false,            -- shows the '~' characters after the end of buffers
+      term_colors = true,                    -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
-        enabled = false,             -- dims the background color of inactive window
+        enabled = false,                     -- dims the background color of inactive window
         shade = 'dark',
-        percentage = 0.15,           -- percentage of the shade to apply to the inactive window
+        percentage = 0.15,                   -- percentage of the shade to apply to the inactive window
       },
-      no_italic = true,              -- Force no italic
-      no_bold = false,               -- Force no bold
-      no_underline = true,           -- Force no underline
-      styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { 'italic' },     -- Change the style of comments
+      no_italic = true,                      -- Force no italic
+      no_bold = false,                       -- Force no bold
+      no_underline = true,                   -- Force no underline
+      styles = {                             -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { 'italic' },             -- Change the style of comments
         conditionals = { 'italic' },
         loops = {},
         functions = {},
@@ -72,7 +74,9 @@ themes.sonokai = {
   lazy = false,
   config = function()
     -- sonokai transparent
-    vim.g.sonokai_transparent_background = '2'
+    if transparency then
+      vim.g.sonokai_transparent_background = '2'
+    end
     vim.g.sonokai_diagnostic_virtual_text = 'colored'
     vim.g.sonokai_style = 'espresso'
     vim.g.sonokari_better_performance = 1
@@ -89,20 +93,34 @@ themes.tokyonight = {
   opts = {},
   config = function()
     -- vim.g.tokyonight_style = "night"
-    -- vim.g.tokyonight_italic_functions = true
-    -- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-    -- vim.g.tokyonight_dark_sidebar = true
-    -- vim.g.tokyonight_dark_float = true
-    -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-    vim.cmd [[colorscheme tokyonight-day]]
+    vim.g.tokyonight_italic_functions = true
+    vim.g.tokyonight_sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
+    vim.g.tokyonight_dark_sidebar = true
+    vim.g.tokyonight_dark_float = true
+    vim.g.tokyonight_colors = { hint = 'orange', error = '#ff0000' }
+    vim.cmd [[colorscheme tokyonight-moon]]
   end,
 }
+
+themes.doubletrouble = {
+
+  'muchzill4/doubletrouble',
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  config = function()
+    vim.o.termguicolors = true
+    vim.cmd 'colorscheme doubletrouble'
+  end,
+}
+
 -- }}}
 
 -- Available themes:
 --   * catpuccin
 --   * sonokai
 --   * tokyonight
+--   * doubletrouble
 local M = themes.catpuccin
 
 return M
