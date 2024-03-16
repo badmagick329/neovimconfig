@@ -15,7 +15,9 @@ local M = {
     },
   },
 }
-
+-- lua regex https://www.lua.org/pil/20.2.html
+-- magic chars:
+-- ( ) . % + - * ? [ ^ $
 function M.config()
   local t = require 'telescope'
   t.setup {
@@ -31,29 +33,29 @@ function M.config()
         },
       },
       file_ignore_patterns = {
-        '**/node_modules/*',
-        '.git/*',
-        'venv/*',
-        'vnv/*',
-        '__pycache__/*',
-        '.pytest_cache/*',
+        'node%_modules/*',
+        '%.git/.*',
+        'venv/.*',
+        'vnv/.*',
+        '__pycache__/.*',
+        '%.pytest_cache/.*',
         'go.sum',
-        '**/*.jpg',
-        '**/*.png',
-        '**/*.mp4',
-        '**/*.webm',
-        '**/*.mkv',
-        '**/*.avi',
-        '**/package-lock.json',
-        '**/yarn.lock',
-        '**/package.json',
+        '%.jpeg$',
+        '%.jpg$',
+        '%.png$',
+        '%.mp4$',
+        '%.webm$',
+        '%.mkv$',
+        '%.avi$',
+        'package-lock.json$',
+        'yarn.lock$',
+        'package.json$',
         -- lua regex https://www.lua.org/pil/20.2.html
-        '**/.next/*',
-        '.DS_Store',
-        'fontawesomefree/*',
-        'db/*',
-        'assetmanager/static/*',
-        '.next/*',
+        '%.next/.*',
+        '%.DS_Store$',
+        '^fontawesomefree/.*',
+        'db/.*',
+        '%assetmanager/static/.*',
       },
     },
   }

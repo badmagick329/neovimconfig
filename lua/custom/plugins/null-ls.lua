@@ -50,10 +50,10 @@ function M.config()
       -- null_ls.builtins.diagnostics.ruff,
       null_ls.builtins.formatting.djlint,
       null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.black,
-      -- null_ls.builtins.formatting.black.with {
-      --   extra_args = { '--line-length', '79' },
-      -- },
+      -- null_ls.builtins.formatting.black,
+      null_ls.builtins.formatting.black.with {
+        extra_args = { '--line-length', '79' },
+      },
       -- ------- MARKDOWN/JS/HTML -------
       null_ls.builtins.formatting.prettierd,
       -- ------- CLANG -------
@@ -62,6 +62,11 @@ function M.config()
       null_ls.builtins.formatting.eslint_d,
       -- ------- OCAML -------
       null_ls.builtins.formatting.ocamlformat,
+      -- ------- SQL -------
+      -- null_ls.builtins.formatting.sqlfluff,
+      null_ls.builtins.formatting.sqlfluff.with {
+        extra_args = { '--dialect', 'sqlite' },
+      },
     },
     -- on_attach = function(client, bufnr)
     --   -- Autoformat on save --
@@ -69,7 +74,6 @@ function M.config()
     --   if client.name == 'tsserver' or client.name == 'typescript-tools' then
     --     return
     --   end
-    --   print(client.name .. ' formatting')
     --   -- If formatting is supported
     --   if client.supports_method 'textDocument/formatting' then
     --     vim.api.nvim_clear_autocmds {
@@ -82,7 +86,15 @@ function M.config()
     --       buffer = bufnr,
     --       callback = function()
     --         -- vim.lsp.buf.format { timeout_ms = 2000, async = false, bufnr = bufnr }
-    --         vim.lsp.buf.format { timeout_ms = 2000, bufnr = bufnr }
+    --         vim.lsp.buf.format {
+    --           timeout_ms = 2000,
+    --           bufnr = bufnr,
+    --           filter = function(c)
+    --             return c.name ~= 'typescript-tools'
+    --                 and c.name ~= 'ruff_lsp'
+    --                 and c.name ~= 'ruff'
+    --           end,
+    --         }
     --       end,
     --     })
     --   end

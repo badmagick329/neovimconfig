@@ -13,6 +13,14 @@ local nrsmap = function(keys, func, desc)
 end
 
 local format_buffer = function()
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params()
+  }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/formatting", params, 1000)
+  if not result or next(result) == nil then
+    print("LSP does not support formatting")
+    return
+  end
   vim.lsp.buf.format {
     timeout = 2000,
     filter = function(client)
@@ -25,14 +33,16 @@ end
 
 -- [[ Basic Keymaps ]]
 keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- Format on Save
 keymap({ 'n', 'v', 'i', 'x' }, '<C-s>', function()
   format_buffer()
-  vim.cmd 'w'
+  -- vim.cmd 'w'
+  vim.cmd.w()
   -- vim.cmd 'normal! zz'
 end, { silent = true })
 
--- Format on save keymap
+-- Format keymap
 keymap('n', '<leader>lf', function()
   format_buffer()
 end, { desc = 'Format Buffer' })

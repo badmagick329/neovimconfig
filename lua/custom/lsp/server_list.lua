@@ -6,6 +6,7 @@ return {
   ocamllsp = {},
   docker_compose_language_service = {},
   dockerls = {},
+  cssls = {},
   tailwindcss = require 'custom.lsp.servers.tailwindcss',
   pyright = require 'custom.lsp.servers.pyright',
   html = require 'custom.lsp.servers.html',
