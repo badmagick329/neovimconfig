@@ -108,6 +108,6 @@ autocmd({ 'BufWinEnter' }, {
 })
 
 -- clang fix for "multiple different client offset_encodings detected for buffer"
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = { 'utf-16' }
-require('lspconfig').clangd.setup { capabilities = capabilities }
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.offsetEncoding = { 'utf-16' }
+-- require('lspconfig').clangd.setup { capabilities = capabilities }

@@ -18,7 +18,7 @@ themes.catpuccin = {
         --     crust = "#474747",
         -- },
       },
-      flavour = 'macchiato', -- latte, frappe, macchiato, mocha
+      flavour = 'mocha', -- latte, frappe, macchiato, mocha
       background = {         -- :h background
         light = 'latte',
         dark = 'mocha',

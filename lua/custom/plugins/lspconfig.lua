@@ -16,6 +16,7 @@ local M = {
 
 function M.config()
   local lspconfig = require 'lspconfig'
+  lspconfig.htmx.setup{}
   local icons = require 'custom.icons'
   -- Diagnostic configuration
   local default_diagnostic_config = {

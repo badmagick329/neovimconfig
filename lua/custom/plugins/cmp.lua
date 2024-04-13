@@ -57,6 +57,11 @@ function M.config()
   require('luasnip').filetype_extend('typescriptreact', { 'html' })
   luasnip.config.setup {}
 
+  vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+  vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+  vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+
+
   local icons = require 'custom.icons'
   local has_words_before = function()
     unpack = unpack or table.unpack
@@ -68,6 +73,12 @@ function M.config()
         :match '%s'
         == nil
   end
+
+  local check_backspace = function()
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  end
+
 
   cmp.setup {
     snippet = {
@@ -117,9 +128,10 @@ function M.config()
       -- end,
       -- }}}
 
-      format = require('cmp-tailwind-colors').format,
+      -- format = require('cmp-tailwind-colors').format,
     },
-    completion = { completeopt = 'noselect' },
+    -- completion = { completeopt = 'noselect' },
+    completion = { completeopt = 'menuone' },
     preselect = cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert {
       ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -139,8 +151,10 @@ function M.config()
           cmp.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true }
         elseif luasnip.expand_or_locally_jumpable() then
           luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
+        -- elseif has_words_before() then
+        --   cmp.complete()
+        elseif check_backspace() then
+          fallback()
         else
           fallback()
         end
@@ -197,6 +211,7 @@ function M.config()
       { name = 'treesitter' },
       { name = 'crates' },
       { name = 'tmux' },
+      { name = 'nvim_lsp_signature_help' },
     },
     -- {{{
     -- sources = {

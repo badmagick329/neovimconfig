@@ -59,7 +59,7 @@ function M.config()
       -- ------- CLANG -------
       null_ls.builtins.formatting.clang_format,
       -- ------- Javascript -------
-      null_ls.builtins.formatting.eslint_d,
+      -- null_ls.builtins.formatting.eslint_d,
       -- ------- OCAML -------
       null_ls.builtins.formatting.ocamlformat,
       -- ------- SQL -------
@@ -67,6 +67,8 @@ function M.config()
       null_ls.builtins.formatting.sqlfluff.with {
         extra_args = { '--dialect', 'sqlite' },
       },
+      -- ------- SHELL -------
+      null_ls.builtins.formatting.shfmt,
     },
     -- on_attach = function(client, bufnr)
     --   -- Autoformat on save --

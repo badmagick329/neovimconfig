@@ -29,13 +29,13 @@ function M.config()
       -- rust
       'rust-analyzer',
       -- go
-      'gopls',
-      'golines',
-      'gofumpt',
-      'goimports-reviser',
+      -- 'gopls',
+      -- 'golines',
+      -- 'gofumpt',
+      -- 'goimports-reviser',
       'delve',
       -- c
-      'clangd',
+      -- 'clangd',
       'clang-format',
       -- docker
       'docker-compose-language-service',
