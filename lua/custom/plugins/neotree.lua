@@ -14,6 +14,8 @@ local M = {
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
+  commit = '774ccbab614cb75457e3020e64a606eabd9e71eb',
+
 }
 
 function M.config()

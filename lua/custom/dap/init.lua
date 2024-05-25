@@ -17,6 +17,7 @@ return {
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python',
     'theHamsta/nvim-dap-virtual-text',
+    "nvim-neotest/nvim-nio",
   },
   config = function()
     local dap = require 'dap'

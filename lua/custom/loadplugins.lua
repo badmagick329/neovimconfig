@@ -42,7 +42,7 @@ require('lazy').setup({
   -- Better sort
   'sQVe/sort.nvim',
   -- Context
-  -- 'nvim-treesitter/nvim-treesitter-context',
+  'nvim-treesitter/nvim-treesitter-context',
 
   { import = 'custom.plugins' },
   require 'custom.dap',

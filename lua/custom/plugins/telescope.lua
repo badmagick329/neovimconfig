@@ -49,7 +49,6 @@ function M.config()
         '%.avi$',
         'package-lock.json$',
         'yarn.lock$',
-        'package.json$',
         -- lua regex https://www.lua.org/pil/20.2.html
         '%.next/.*',
         '%.DS_Store$',

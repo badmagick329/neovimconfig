@@ -197,25 +197,25 @@ nmap('gR', function() trouble.open 'lsp_references' end, 'Trouble: LSP Reference
 nmap('<leader>fc', '<cmd>TodoTelescope<cr>', 'TodoComments: Telescope')
 nmap('<leader>fx', '<cmd>TodoTrouble<cr>', 'TodoComments: Trouble')
 
--- [[ Dap Keybinds ]]
-local dap = require 'dap'
-local dapui = require 'dapui'
--- stylua: ignore start
-nmap('<F5>', function() dap.continue() end, 'Debug: Continue')
-nmap('<F10>', function() dap.step_into() end, 'Debug: Step Into')
-nmap('<F11>', function() dap.step_over() end, 'Debug: Step Over')
-nmap('<F12>', function() dap.step_out() end, 'Debug: Step Out')
-nmap('<Leader>db', function() dap.toggle_breakpoint() end, 'Debug: Toggle Breakpoint')
-keymap('n', '<leader>dB', function()
-  dap.set_breakpoint(vim.fn.input 'Debug: Breakpoint condition: ')
-end, { desc = 'Conditional Breakpoint' })
-
-nmap('<Leader>dr', function() dap.repl.open() end, 'Debug: Open Repl')
-nmap('<Leader>dl', function() dap.run_last() end, 'Debug: Run Last')
-nmap('<Leader>dx', function()
-  dap.close()
-  dapui.close()
-end, 'Debug: Close')
+-- -- [[ Dap Keybinds ]]
+-- local dap = require 'dap'
+-- local dapui = require 'dapui'
+-- -- stylua: ignore start
+-- nmap('<F5>', function() dap.continue() end, 'Debug: Continue')
+-- nmap('<F10>', function() dap.step_into() end, 'Debug: Step Into')
+-- nmap('<F11>', function() dap.step_over() end, 'Debug: Step Over')
+-- nmap('<F12>', function() dap.step_out() end, 'Debug: Step Out')
+-- nmap('<Leader>db', function() dap.toggle_breakpoint() end, 'Debug: Toggle Breakpoint')
+-- keymap('n', '<leader>dB', function()
+--   dap.set_breakpoint(vim.fn.input 'Debug: Breakpoint condition: ')
+-- end, { desc = 'Conditional Breakpoint' })
+-- 
+-- nmap('<Leader>dr', function() dap.repl.open() end, 'Debug: Open Repl')
+-- nmap('<Leader>dl', function() dap.run_last() end, 'Debug: Run Last')
+-- nmap('<Leader>dx', function()
+--   dap.close()
+--   dapui.close()
+-- end, 'Debug: Close')
 
 -- {{{
 -- [[ ToggleTerm ]]
