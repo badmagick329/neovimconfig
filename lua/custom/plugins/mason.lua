@@ -56,7 +56,7 @@ function M.config()
       'prettierd',
       'marksman',
       -- lua
-      'lua-language-server',
+      -- 'lua-language-server',
       'stylua',
     },
   }
