@@ -1,5 +1,5 @@
 -- vim:ai:foldmethod=marker:foldlevel=0:
-local enabled = true
+local enabled = false
 if not enabled then
   return {}
 end

@@ -21,9 +21,9 @@ local on_attach = function(client, bufnr)
       { noremap = true, silent = true }
     )
   end
-  if client.supports_method 'textDocument/inlayHint' then
-    vim.lsp.inlay_hint(bufnr, true)
-  end
+  -- if client.supports_method 'textDocument/inlayHint' then
+  --   vim.lsp.inlay_hint(bufnr, true)
+  -- end
 end
 
 mason_lspconfig.setup {

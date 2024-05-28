@@ -20,8 +20,7 @@ function M.config()
       on_attach = function(client, bufnr)
         -- your other on_attach stuff here if you have any
         -- ...
-        print("Enabling inlay hints")
-        vim.lsp.buf.inlay_hint(bufnr, true)
+        -- vim.lsp.buf.inlay_hint(bufnr, true)
       end,
       settings = {
         -- specify some or all of the following settings if you want to adjust the default behavior

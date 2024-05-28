@@ -33,7 +33,7 @@ function M.config()
       -- 'golines',
       -- 'gofumpt',
       -- 'goimports-reviser',
-      'delve',
+      -- 'delve',
       -- c
       -- 'clangd',
       'clang-format',
